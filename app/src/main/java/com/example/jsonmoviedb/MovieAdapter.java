@@ -1,6 +1,7 @@
 package com.example.jsonmoviedb;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,12 @@ import android.widget.RatingBar;
 import android.widget.TextClock;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.Instant;
+import java.time.temporal.TemporalAdjuster;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
@@ -20,6 +24,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     private MovieAdapter.onSelectData onSelectData;
     private Context mContext;
     private double Rating;
+
 
     public interface onSelectData {
         void onSelected(ModelMovie modelMovie);
@@ -37,6 +42,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return new MovieAdapter.ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(MovieAdapter.ViewHolder holder, int position){
         final ModelMovie data = items.get(position);
@@ -50,7 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.ratingBar.setStepSize((float) 0.5);
         holder.ratingBar.setRating(newValue / 2);
 
-        Glide.with(mContext) RequestManager
+        Glide.with(mContext)
                 .load(ApiEndpoint.URLIMAGE + data.getPosterPath())
                 .apply(new RequestOption()
                         .placeholder(R.drawable.ic_image)
