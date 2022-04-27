@@ -2,7 +2,7 @@ package com.example.jsonmoviedb;
 
 public class ApiEndpoint {
     public static String BASEURL = "https://api.themoviedb.org/3/";
-    public static String APIKEY = "";
+    public static String APIKEY = "a3f6599740d771bbaeef2cd8cc07719b";
     public static String LANGUAGE = "&language=en-US";
     public static  String SEARCH_MOVIE = "search/movie?";
     public static String QUERY = "&query=";
